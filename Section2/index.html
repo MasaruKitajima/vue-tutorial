@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Color Tools</h1>
+        <h2>Bootstrap Styled Color Pallete Generator</h2>
+        <hr>
+        <div>
+            <input v-model="hexcode" placeholder="aabbcc" type="text" maxlength="6" id="hex">
+            <label for="hex">16進法で色を指定してください。'#'は入力不要です。</label>
+            <p>{{ errMessage }}</p>
+        </div>
+        <div>
+            <button v-on:click="doGenerate">Generate</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                errMessage: ""
+            },
+            methods: {
+                doGenerate: function() {
+                    if (!this.hexcode) {
+                        this.errMessage = '入力してください。'
+                    }
+                    if (this.hexcode.length != 6) {
+                        this.errMessage = '6桁の16進法カラーコードを入力してください。'
+                    }
+                    if (this.hexcode.match(/^[a-fA-F0-9]{6}/)) {
+                        this.errMessage = '利用できる文字種は"0~9"と"a~f"または"A~F"のみです。'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
