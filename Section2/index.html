@@ -11,12 +11,26 @@
     <script src="../vue.js"></script>
     <div id="app">
         <p>{{messsage}}</p>
+        <!-- {{}}内ではJSの構文を使える -->
+        <p>{{ number * 3 }}</p>
+        <!--- なので三項演算子も使える -->
+        <p>{{ok ? 'YES' : 'NO'}}</p>
+        <!-- メソッドの作り方 -->
+        <p>{{sayHi()}}</p>
     </div>
     <script>
         new Vue({
             el: '#app',
             data: {
-                messsage: 'Hello World!'
+                messsage: 'Hello World!',
+                number: 3,
+                ok: false
+            },
+            // メソッドも用意できる。
+            methods: {
+                sayHi: function() {
+                    return 'Hi';
+                }
             }
         })
     </script>
